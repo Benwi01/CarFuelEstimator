@@ -1,0 +1,17 @@
+.results-paper {
+    padding: 20px;
+    margin-top: 30px;
+    width: 100%;
+    max-width: 600px;
+    border-radius: 8px !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+  }
+  
+  .results-title {
+    margin-bottom: 15px;
+    color: #1976d2;
+  }
+  
+  .results-text {
+    margin-bottom: 10px;
+  }

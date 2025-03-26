@@ -1,0 +1,21 @@
+.fuel-form {
+    margin-top: 30px;
+    width: 100%;
+    max-width: 600px;
+  }
+  
+  .fuel-title {
+    margin-bottom: 20px;
+    color: #1976d2;
+  }
+  
+  .form-field {
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  
+  .calculate-btn {
+    margin-top: 20px !important;
+    background-color: #1976d2 !important;
+    color: white !important;
+  }

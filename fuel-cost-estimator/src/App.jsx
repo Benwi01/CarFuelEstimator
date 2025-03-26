@@ -1,35 +1,52 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import axios from 'axios';
+import MapComponent from './components/MapComponent';
+import RouteControls from './components/RouteControls';
+import FuelCalculator from './components/FuelCalculator';
+import ResultsPanel from './components/ResultsPanel';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [routeCoordinates, setRouteCoordinates] = useState([]);
+  const [distance, setDistance] = useState(0);
+  const [results, setResults] = useState(null);
+
+  const calculateRoute = async ({ start, end, waypoints }) => {
+    try {
+      // Mock implementation
+      const mockCoords = [
+        [55.6761, 12.5683], // Copenhagen
+        [52.5200, 13.4050], // Berlin
+        [48.8566, 2.3522],  // Paris
+        [45.4642, 9.1900],  // Milan
+        [41.9028, 12.4964]  // Rome
+      ];
+      
+      setRouteCoordinates(mockCoords);
+      setDistance(2200 * 1000);
+      setResults(null);
+    } catch (error) {
+      console.error('Error calculating route:', error);
+    }
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="app-container">
+      <h1 className="app-title">Car Fuel Cost Estimator</h1>
+      
+      <div className="content-container">
+        <MapComponent routeCoordinates={routeCoordinates} />
+        <RouteControls onRouteCalculate={calculateRoute} />
+        {distance > 0 && (
+          <FuelCalculator 
+            distance={distance} 
+            onCalculate={setResults} 
+          />
+        )}
+        {results && <ResultsPanel results={results} />}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
